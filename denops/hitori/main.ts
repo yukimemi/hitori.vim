@@ -47,13 +47,14 @@ export async function main(denops: Denops): Promise<void> {
         const ws = new WebSocket(`ws://localhost:${port}`);
         ws.onopen = async () => {
           clog(`[client] open socket !`);
-          if (quit) {
-            await denops.cmd(`qa!`);
-          }
+          await denops.cmd(`bwipeout!`);
           clog(`[client] send buf path: ${bufPath}`);
           ws.send(bufPath);
           clog(`[client] close socket !`);
           ws.close();
+          if (quit) {
+            await denops.cmd(`qa!`);
+          }
         };
       } catch (e) {
         console.log(e);
