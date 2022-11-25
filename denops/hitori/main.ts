@@ -52,7 +52,8 @@ export async function main(denops: Denops): Promise<void> {
           clog(`[client] close socket !`);
           ws.close();
           if (quit) {
-            await denops.cmd(`qa`);
+            await denops.cmd(`%bwipeout!`);
+            await denops.cmd(`qa!`);
           }
         };
       } catch (e) {
@@ -79,7 +80,7 @@ export async function main(denops: Denops): Promise<void> {
 
   try {
     if (hitori) {
-      await serve((req) => {
+      serve((req) => {
         clog(req);
         const { response, socket } = Deno.upgradeWebSocket(req);
         socket.addEventListener("open", () => clog("[server] open !"));
