@@ -1,4 +1,4 @@
-import { serve } from "https://deno.land/std@0.165.0/http/server.ts";
+import { serve } from "https://deno.land/std@0.166.0/http/server.ts";
 import * as fn from "https://deno.land/x/denops_std@v3.9.3/function/mod.ts";
 import * as helper from "https://deno.land/x/denops_std@v3.9.3/helper/mod.ts";
 import * as vars from "https://deno.land/x/denops_std@v3.9.3/variable/mod.ts";
@@ -47,7 +47,7 @@ export async function main(denops: Denops): Promise<void> {
         const ws = new WebSocket(`ws://localhost:${port}`);
         ws.onopen = async () => {
           clog(`[client] open socket !`);
-          await denops.cmd(`bwipeout!`);
+          // await denops.cmd(`bwipeout!`);
           clog(`[client] send buf path: ${bufPath}`);
           ws.send(bufPath);
           clog(`[client] close socket !`);
