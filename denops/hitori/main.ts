@@ -47,6 +47,7 @@ export async function main(denops: Denops): Promise<void> {
         const ws = new WebSocket(`ws://localhost:${port}`);
         ws.onopen = async () => {
           clog(`[client] open socket !`);
+          helper.setSilent(denops, "silent!");
           await denops.cmd(`silent! bwipeout!`);
           clog(`[client] send buf path: ${bufPath}`);
           ws.send(bufPath);
@@ -55,6 +56,7 @@ export async function main(denops: Denops): Promise<void> {
           if (quit) {
             await denops.cmd(`silent! qa!`);
           }
+          helper.setSilent(denops, "");
         };
       } catch (e) {
         console.log(e);
