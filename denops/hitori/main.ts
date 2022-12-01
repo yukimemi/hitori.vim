@@ -53,7 +53,7 @@ export async function main(denops: Denops): Promise<void> {
           clog(`[client] close socket !`);
           ws.close();
           if (quit) {
-            await denops.cmd(`qa!`);
+            await denops.cmd(`silent! qa!`);
           }
         };
       } catch (e) {
