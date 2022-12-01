@@ -8,5 +8,6 @@
     "javascriptreact",
     "typescript",
     "typescriptreact"
-  ]
+  ],
+  "deno.unstable": true
 }
