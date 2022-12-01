@@ -33,10 +33,10 @@ await new Command()
   .option("-l, --log-level <level:log-level>", "Set log level.", {
     default: "info" as const,
   })
-  .option("-p, --port <port:port>", "port number.", {
+  .option("-p, --port <port:number>", "port number.", {
     default: 7070,
   })
-  .option("-b, --bin <vimpath:bin>", "Vim / Neovim path.", {
+  .option("-b, --bin <vimpath:string>", "Vim / Neovim path.", {
     default: "nvim-qt",
   })
   .arguments("[input]")
