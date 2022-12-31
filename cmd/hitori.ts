@@ -1,4 +1,8 @@
-import { resolve } from "https://deno.land/std@0.170.0/path/mod.ts";
+import {
+  isAbsolute,
+  join,
+  normalize,
+} from "https://deno.land/std@0.170.0/path/mod.ts";
 
 import {
   Command,
@@ -48,7 +52,9 @@ await new Command()
       // Resolve path.
       const a = args.map((x) => {
         if (x && !x.startsWith("-")) {
-          return resolve(x);
+          if (!isAbsolute(x)) {
+            return normalize(join(Deno.cwd(), x));
+          }
         }
         return x;
       });
