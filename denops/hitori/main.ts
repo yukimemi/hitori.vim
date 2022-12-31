@@ -5,19 +5,19 @@ import * as vars from "https://deno.land/x/denops_std@v3.9.3/variable/mod.ts";
 import { ensureString } from "https://deno.land/x/unknownutil@v2.1.0/mod.ts";
 import type { Denops } from "https://deno.land/x/denops_std@v3.9.3/mod.ts";
 
-function listenCheck(port: number): boolean {
+function isListening(port: number): boolean {
   // running check.
   try {
     const server = Deno.listen({ port });
     server.close();
-    return true;
-  } catch {
     return false;
+  } catch {
+    return true;
   }
 }
 
 export async function main(denops: Denops): Promise<void> {
-  let hitori = false;
+  let isListen = false;
 
   // debug.
   const debug = await vars.g.get(denops, "hitori_debug", false);
@@ -75,18 +75,20 @@ export async function main(denops: Denops): Promise<void> {
   `,
   );
 
-  hitori = listenCheck(port);
-  if (!hitori) {
+  isListen = isListening(port);
+  if (isListen) {
     clog(`Server already running.`);
   }
 
   try {
-    if (hitori) {
+    if (isListen) {
+      await denops.dispatcher.attach();
+    } else {
       serve((req) => {
         clog(req);
         const { response, socket } = Deno.upgradeWebSocket(req);
         socket.addEventListener("open", () => clog("[server] open !"));
-        socket.addEventListener("error", () => console.log("[server] error !"));
+        socket.addEventListener("error", (e) => console.log(`[server] error !, ${e}`));
         socket.addEventListener("close", () => clog("[server] close !"));
         socket.addEventListener(
           "message",
@@ -100,8 +102,6 @@ export async function main(denops: Denops): Promise<void> {
         );
         return response;
       }, { port });
-    } else {
-      await denops.dispatcher.attach();
     }
   } catch (e) {
     console.log(e);

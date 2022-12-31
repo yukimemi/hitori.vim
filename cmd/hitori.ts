@@ -1,3 +1,5 @@
+import { resolve } from "https://deno.land/std@0.170.0/path/mod.ts";
+
 import {
   Command,
   EnumType,
@@ -41,6 +43,12 @@ await new Command()
   })
   .arguments("[input]")
   .action((options, ...args) => {
+    const a = args.map(x => {
+      if (x && !x.startsWith("-")) {
+        return resolve(x);
+      }
+      return x;
+    });
     if (isListening(ensureNumber(options.port))) {
       const ws = new WebSocket(`ws://localhost:${options.port}`);
       ws.onopen = () => {
@@ -51,9 +59,9 @@ await new Command()
         ws.close();
       };
     } else {
-      console.log({ bin: options.bin, args });
+      console.log({ bin: options.bin, a });
       const command = new Deno.Command(ensureString(options.bin), {
-        args: ensureArray<string>(args),
+        args: ensureArray<string>(a),
       });
       command.outputSync();
     }
