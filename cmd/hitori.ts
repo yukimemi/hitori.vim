@@ -3,7 +3,7 @@ import { resolve } from "https://deno.land/std@0.170.0/path/mod.ts";
 import {
   Command,
   EnumType,
-} from "https://deno.land/x/cliffy@v0.25.4/command/mod.ts";
+} from "https://deno.land/x/cliffy@v0.25.6/command/mod.ts";
 import {
   ensureArray,
   ensureNumber,
@@ -43,25 +43,26 @@ await new Command()
   })
   .arguments("[input]")
   .action((options, ...args) => {
-    const a = args.map(x => {
-      if (x && !x.startsWith("-")) {
-        return resolve(x);
-      }
-      return x;
-    });
     if (isListening(ensureNumber(options.port))) {
       const ws = new WebSocket(`ws://localhost:${options.port}`);
+      // Resolve path.
+      const a = args.map((x) => {
+        if (x && !x.startsWith("-")) {
+          return resolve(x);
+        }
+        return x;
+      });
       ws.onopen = () => {
         console.log(`[client] open socket !`);
-        console.log(`[client] send args: ${args.join(" ")}`);
-        ws.send(args.join(" "));
+        console.log(`[client] send args: ${a.join(" ")}`);
+        ws.send(a.join(" "));
         console.log(`[client] close socket !`);
         ws.close();
       };
     } else {
-      console.log({ bin: options.bin, a });
+      console.log({ bin: options.bin, args });
       const command = new Deno.Command(ensureString(options.bin), {
-        args: ensureArray<string>(a),
+        args: ensureArray<string>(args),
       });
       command.outputSync();
     }

@@ -1,9 +1,9 @@
-import { serve } from "https://deno.land/std@0.166.0/http/server.ts";
-import * as fn from "https://deno.land/x/denops_std@v3.9.3/function/mod.ts";
-import * as helper from "https://deno.land/x/denops_std@v3.9.3/helper/mod.ts";
-import * as vars from "https://deno.land/x/denops_std@v3.9.3/variable/mod.ts";
+import { serve } from "https://deno.land/std@0.170.0/http/server.ts";
+import * as fn from "https://deno.land/x/denops_std@v3.12.0/function/mod.ts";
+import * as helper from "https://deno.land/x/denops_std@v3.12.0/helper/mod.ts";
+import * as vars from "https://deno.land/x/denops_std@v3.12.0/variable/mod.ts";
 import { ensureString } from "https://deno.land/x/unknownutil@v2.1.0/mod.ts";
-import type { Denops } from "https://deno.land/x/denops_std@v3.9.3/mod.ts";
+import type { Denops } from "https://deno.land/x/denops_std@v3.12.0/mod.ts";
 
 function isListening(port: number): boolean {
   // running check.
