@@ -1,3 +1,3 @@
 import { createCmd } from "./base.ts";
 
-await createCmd("nvim", Deno.args);
+await createCmd("nvim-qt", Deno.args);

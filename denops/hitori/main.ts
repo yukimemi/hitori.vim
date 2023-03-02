@@ -24,6 +24,11 @@ export async function main(denops: Denops): Promise<void> {
   const enable = await vars.g.get(denops, "hitori_enable", true);
   const quit = await vars.g.get(denops, "hitori_quit", true);
   const port = await vars.g.get(denops, "hitori_port", 7070);
+  const blackListPatterns: string[] = await vars.g.get(
+    denops,
+    "hitori_blacklist_patterns",
+    [],
+  );
 
   // deno-lint-ignore no-explicit-any
   const clog = (...data: any[]): void => {
@@ -44,6 +49,11 @@ export async function main(denops: Denops): Promise<void> {
         }
         const bufPath = ensureString(await fn.expand(denops, "%:p"));
         clog({ bufPath });
+        // black list check.
+        if (blackListPatterns.some((p) => new RegExp(p).test(bufPath))) {
+          clog(`${bufPath} is black list pattern ! so attach skip !`);
+          return;
+        }
         const ws = new WebSocket(`ws://localhost:${port}`);
         ws.onopen = async () => {
           clog(`[client] open socket !`);
@@ -88,15 +98,36 @@ export async function main(denops: Denops): Promise<void> {
         clog(req);
         const { response, socket } = Deno.upgradeWebSocket(req);
         socket.addEventListener("open", () => clog("[server] open !"));
-        socket.addEventListener("error", (e) => console.log(`[server] error !, ${e}`));
+        socket.addEventListener(
+          "error",
+          (e) => console.log(`[server] error !, ${e}`),
+        );
         socket.addEventListener("close", () => clog("[server] close !"));
         socket.addEventListener(
           "message",
           async (e) => {
             clog(`[server] message ! ${e.data}`);
+
+            // black list check.
+            if (blackListPatterns.some((p) => new RegExp(p).test(e.data))) {
+              clog(`${e.data} is black list pattern ! so open skip !`);
+              socket.send(
+                JSON.stringify({
+                  msg: "This data is black list patterns !",
+                  open: false,
+                }),
+              );
+              return;
+            }
             if (e.data) {
               console.log(`open ${e.data}`);
               await denops.cmd(`e ${e.data}`);
+              socket.send(
+                JSON.stringify({
+                  msg: "Success open !",
+                  open: true,
+                }),
+              );
             }
           },
         );
