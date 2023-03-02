@@ -128,6 +128,14 @@ export async function main(denops: Denops): Promise<void> {
                   open: true,
                 }),
               );
+            } else {
+              console.log(`data is null !`);
+              socket.send(
+                JSON.stringify({
+                  msg: "Not open !",
+                  open: true,
+                }),
+              );
             }
           },
         );
