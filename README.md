@@ -2,6 +2,8 @@
 
 Plugin similar to [neovim-remote](https://github.com/mhinz/neovim-remote) and [vim-singleton](https://github.com/thinca/vim-singleton) using [denops.vim](https://github.com/vim-denops/denops.vim) .
 
+![dps-hitori](./image.gif)
+
 ## Require.
 
 - [Deno - A modern runtime for JavaScript and TypeScript](https://deno.land/)
