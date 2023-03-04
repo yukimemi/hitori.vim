@@ -28,11 +28,11 @@ Before starting Neovim, you can use the `hitori` command to check if the WebSock
 To install `nvim`, use the following command:
 
 ```sh
-deno install -A --unstable --name hitori https://raw.githubusercontent.com/yukimemi/dps-hitori/main/cmd/hitori.ts
+deno install --allow-net --allow-run --allow-read --name hitori https://raw.githubusercontent.com/yukimemi/dps-hitori/main/cmd/hitori.ts
 ```
 
 To install `nvim-qt`, use the following command:
 
 ```sh
-deno install -A --unstable --name hitori https://raw.githubusercontent.com/yukimemi/dps-hitori/main/cmd/hitori-qt.ts
+deno install --allow-net --allow-run --allow-read --name hitori https://raw.githubusercontent.com/yukimemi/dps-hitori/main/cmd/hitori-qt.ts
 ```

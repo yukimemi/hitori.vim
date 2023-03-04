@@ -27,18 +27,20 @@ function isListening(port: number): boolean {
   }
 }
 
-function openVim(cmd: string, args: [(string | undefined)?]) {
+async function openVim(cmd: string, args: [(string | undefined)?]) {
   console.log({ cmd, args });
   const command = new Deno.Command(ensureString(cmd), {
     args: ensureArray<string>(args),
   });
-  command.outputSync();
+  const child = command.spawn();
+  const status = await child.status;
+  console.log({ status });
 }
 
 export function createCmd(cmd: string, denoArgs: string[]) {
   return new Command()
     .name("hitori")
-    .version("0.1.1")
+    .version("0.1.2")
     .description(
       "Execute vim / neovim with 1 instance like --remote or neovim-remote.",
     )
@@ -52,7 +54,7 @@ export function createCmd(cmd: string, denoArgs: string[]) {
       default: 7070,
     })
     .arguments("[input]")
-    .action((options, ...args) => {
+    .action(async (options, ...args) => {
       if (isListening(ensureNumber(options.port))) {
         const ws = new WebSocket(`ws://localhost:${options.port}`);
         // Resolve path.
@@ -69,18 +71,18 @@ export function createCmd(cmd: string, denoArgs: string[]) {
           console.log(`[client] send args: ${a.join(" ")}`);
           ws.send(a.join(" "));
         };
-        ws.onmessage = (e) => {
+        ws.onmessage = async (e) => {
           const jsonData = JSON.parse(e.data);
           console.log(jsonData);
           if (!jsonData.open) {
             console.log(`Open false, so open editor !`);
-            openVim(cmd, args);
+            await openVim(cmd, args);
           }
           console.log(`[client] close socket !`);
           ws.close();
         };
       } else {
-        openVim(cmd, args);
+        await openVim(cmd, args);
       }
     })
     .parse(denoArgs);
