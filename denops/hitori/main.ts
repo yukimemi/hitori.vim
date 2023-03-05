@@ -5,6 +5,8 @@ import * as vars from "https://deno.land/x/denops_std@v4.0.0/variable/mod.ts";
 import { ensureString } from "https://deno.land/x/unknownutil@v2.1.0/mod.ts";
 import type { Denops } from "https://deno.land/x/denops_std@v4.0.0/mod.ts";
 
+let enable = true;
+
 function isListening(port: number): boolean {
   // running check.
   try {
@@ -21,7 +23,6 @@ export async function main(denops: Denops): Promise<void> {
 
   // debug.
   const debug = await vars.g.get(denops, "hitori_debug", false);
-  const enable = await vars.g.get(denops, "hitori_enable", true);
   const quit = await vars.g.get(denops, "hitori_quit", true);
   const port = await vars.g.get(denops, "hitori_port", 7070);
   const blackListPatterns: string[] = await vars.g.get(
@@ -29,6 +30,7 @@ export async function main(denops: Denops): Promise<void> {
     "hitori_blacklist_patterns",
     [],
   );
+  enable = await vars.g.get(denops, "hitori_enable", true);
 
   // deno-lint-ignore no-explicit-any
   const clog = (...data: any[]): void => {
@@ -49,30 +51,42 @@ export async function main(denops: Denops): Promise<void> {
         }
         const bufPath = ensureString(await fn.expand(denops, "%:p"));
         clog({ bufPath });
-        // black list check.
-        if (blackListPatterns.some((p) => new RegExp(p).test(bufPath))) {
-          clog(`${bufPath} is black list pattern ! so attach skip !`);
-          return;
-        }
+
         const ws = new WebSocket(`ws://localhost:${port}`);
-        ws.onopen = async () => {
+        ws.onopen = () => {
           clog(`[client] open socket !`);
-          helper.setSilent(denops, "silent!");
-          await denops.cmd(`silent! bwipeout!`);
           clog(`[client] send buf path: ${bufPath}`);
           ws.send(bufPath);
+        };
+        ws.onmessage = async (e) => {
+          const jsonData = JSON.parse(e.data);
+          clog({ jsonData });
+          if (!jsonData.open) {
+            clog(`Open false, so skip !`);
+          } else {
+            helper.setSilent(denops, "silent!");
+            await denops.cmd(`silent! bwipeout!`);
+            if (quit) {
+              await denops.cmd(`silent! qa!`);
+            }
+            helper.setSilent(denops, "");
+          }
           clog(`[client] close socket !`);
           ws.close();
-          if (quit) {
-            await denops.cmd(`silent! qa!`);
-          }
-          helper.setSilent(denops, "");
         };
       } catch (e) {
         console.log(e);
       } finally {
         clog(`attach end`);
       }
+    },
+    // deno-lint-ignore require-await
+    async enable(): Promise<void> {
+      enable = true;
+    },
+    // deno-lint-ignore require-await
+    async disable(): Promise<void> {
+      enable = false;
     },
   };
 
@@ -82,6 +96,9 @@ export async function main(denops: Denops): Promise<void> {
     function! s:${denops.name}_notify(method, params) abort
       call denops#plugin#wait_async('${denops.name}', function('denops#notify', ['${denops.name}', a:method, a:params]))
     endfunction
+
+    command! EnableHitori call s:${denops.name}_notify('enable', [])
+    command! DisableHitori call s:${denops.name}_notify('disable', [])
   `,
   );
 
@@ -100,7 +117,7 @@ export async function main(denops: Denops): Promise<void> {
         socket.addEventListener("open", () => clog("[server] open !"));
         socket.addEventListener(
           "error",
-          (e) => console.log(`[server] error !, ${e}`),
+          (e) => clog(`[server] error !`, e),
         );
         socket.addEventListener("close", () => clog("[server] close !"));
         socket.addEventListener(
@@ -119,6 +136,16 @@ export async function main(denops: Denops): Promise<void> {
               );
               return;
             }
+            if (!enable) {
+              clog(`Disable hitori ...`);
+              socket.send(
+                JSON.stringify({
+                  msg: "hitori is disabled !",
+                  open: false,
+                }),
+              );
+              return;
+            }
             if (e.data) {
               console.log(`open ${e.data}`);
               await denops.cmd(`e ${e.data}`);
@@ -129,7 +156,7 @@ export async function main(denops: Denops): Promise<void> {
                 }),
               );
             } else {
-              console.log(`data is null !`);
+              clog(`data is null !`);
               socket.send(
                 JSON.stringify({
                   msg: "Not open !",

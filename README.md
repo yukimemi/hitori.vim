@@ -24,6 +24,16 @@ let g:hitori_port = 7070      " using websocket port
 let g:hitori_blacklist_patterns = ["\\.tmp$", "\\.diff$", "(COMMIT_EDIT|TAG_EDIT|MERGE_|SQUASH_)MSG$"]
 ```
 
+## Command.
+
+```vim
+" Disable hitori.
+:DisableHitori
+
+" Enable hitori.
+:EnableHitori
+```
+
 ## hitori command !
 
 Before starting Neovim, you can use the `hitori` command to check if the WebSocket server is already running, and if it is, directly send the path of the argument via the WebSocket, otherwise start Neovim.
