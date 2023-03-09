@@ -53,9 +53,10 @@ export async function main(denops: Denops): Promise<void> {
         clog({ bufPath });
 
         const ws = new WebSocket(`ws://localhost:${port}`);
-        ws.onopen = () => {
+        ws.onopen = async () => {
           clog(`[client] open socket !`);
           clog(`[client] send buf path: ${bufPath}`);
+          await denops.cmd(`silent! bwipeout!`);
           ws.send(bufPath);
         };
         ws.onmessage = async (e) => {
@@ -63,13 +64,12 @@ export async function main(denops: Denops): Promise<void> {
           clog({ jsonData });
           if (!jsonData.open) {
             clog(`Open false, so skip !`);
+            await denops.cmd(`e ${bufPath}`);
           } else {
-            helper.setSilent(denops, "silent!");
-            await denops.cmd(`silent! bwipeout!`);
             if (quit) {
               await denops.cmd(`silent! qa!`);
             }
-            helper.setSilent(denops, "");
+            await denops.cmd(`e ${bufPath}`);
           }
           clog(`[client] close socket !`);
           ws.close();
