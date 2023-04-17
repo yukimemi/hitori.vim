@@ -2,7 +2,7 @@ import {
   isAbsolute,
   join,
   normalize,
-} from "https://deno.land/std@0.181.0/path/mod.ts";
+} from "https://deno.land/std@0.183.0/path/mod.ts";
 
 import {
   Command,
