@@ -1,4 +1,4 @@
-import { serve } from "https://deno.land/std@0.183.0/http/server.ts";
+import { serve } from "https://deno.land/std@0.184.0/http/server.ts";
 import * as fn from "https://deno.land/x/denops_std@v4.1.5/function/mod.ts";
 import * as helper from "https://deno.land/x/denops_std@v4.1.5/helper/mod.ts";
 import * as vars from "https://deno.land/x/denops_std@v4.1.5/variable/mod.ts";
