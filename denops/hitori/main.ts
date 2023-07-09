@@ -28,7 +28,7 @@ export async function main(denops: Denops): Promise<void> {
   const ignorePatterns: string[] = await vars.g.get(
     denops,
     "hitori_ignore_patterns",
-    [],
+    ["\\.tmp$", "\\.diff$", "(COMMIT_EDIT|TAG_EDIT|MERGE_|SQUASH_)MSG$"],
   );
   enable = await vars.g.get(denops, "hitori_enable", true);
 

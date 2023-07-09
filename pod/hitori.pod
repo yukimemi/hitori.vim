@@ -7,6 +7,8 @@ description: Denops hitori
 
 =head1 dps-hitori
 
+L<hitori|./image.gif>
+
 Plugin similar to L<neovim-remote|https://github.com/mhinz/neovim-remote> and L<vim-singleton|https://github.com/thinca/vim-singleton> using L<denops.vim|https://github.com/vim-denops/denops.vim>.
 
 =head1 Features X<hitori-features>
@@ -75,6 +77,23 @@ default is 7070
   let g:hitori_quit = v:false
   let g:hitori_port = 7070
   let g:hitori_blacklist_patterns = ["\\.tmp$", "\\.diff$", "(COMMIT_EDIT|TAG_EDIT|MERGE_|SQUASH_)MSG$"]
+
+=head1 hitori cli command X<hitori-cli>
+
+Before starting Neovim, you can use the `hitori` command to check if the WebSocket server is already running, and if it is, directly send the path of the argument via the WebSocket, otherwise start Neovim.
+
+To use `nvim`, use the following command:                     X<hitori_cli_nvim>
+
+  deno install --force --allow-net --allow-run --allow-read --name hitori https://raw.githubusercontent.com/yukimemi/dps-hitori/main/cmd/hitori_nvim.ts
+
+
+To use `nvim-qt`, use the following command:               X<hitori_cli_nvim_qt>
+
+  deno install --force --allow-net --allow-run --allow-read --name hitori https://raw.githubusercontent.com/yukimemi/dps-hitori/main/cmd/hitori_nvim-qt.ts
+
+To use `neovide`, use the following command:               X<hitori_cli_neovide>
+
+  deno install --force --allow-net --allow-run --allow-read --name hitori https://raw.githubusercontent.com/yukimemi/dps-hitori/main/cmd/hitori_neovide.ts
 
 =head1 License X<hitori-license>
 
