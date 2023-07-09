@@ -25,9 +25,9 @@ export async function main(denops: Denops): Promise<void> {
   const debug = await vars.g.get(denops, "hitori_debug", false);
   const quit = await vars.g.get(denops, "hitori_quit", true);
   const port = await vars.g.get(denops, "hitori_port", 7070);
-  const blackListPatterns: string[] = await vars.g.get(
+  const ignorePatterns: string[] = await vars.g.get(
     denops,
-    "hitori_blacklist_patterns",
+    "hitori_ignore_patterns",
     [],
   );
   enable = await vars.g.get(denops, "hitori_enable", true);
@@ -134,7 +134,7 @@ export async function main(denops: Denops): Promise<void> {
             clog(`[server] message ! ${e.data}`);
 
             // black list check.
-            if (blackListPatterns.some((p) => new RegExp(p).test(e.data))) {
+            if (ignorePatterns.some((p) => new RegExp(p).test(e.data))) {
               clog(`${e.data} is black list pattern ! so open skip !`);
               socket.send(
                 JSON.stringify({
