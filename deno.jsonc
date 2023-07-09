@@ -1,0 +1,13 @@
+{
+  "tasks": {
+    "doc": "deno run --allow-net --allow-read --allow-write ./build_doc.ts",
+    "watch": "deno run --allow-net --allow-read --allow-write --watch=./pod ./build_doc.ts"
+  },
+  "fmt": {
+    "useTabs": false,
+    "lineWidth": 100,
+    "indentWidth": 2,
+    "singleQuote": false
+  },
+  "lock": false
+}
