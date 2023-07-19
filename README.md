@@ -1,7 +1,6 @@
 # dps-hitori
 
 
-
 <img src="./image.gif">
 
 Plugin similar to [neovim-remote](https://github.com/mhinz/neovim-remote) and [vim-singleton](https://github.com/thinca/vim-singleton) using [denops.vim](https://github.com/vim-denops/denops.vim).
@@ -15,7 +14,8 @@ Also supports Windows.
 
 If you use [folke/lazy.nvim](https://github.com/folke/lazy.nvim).
 
-```
+```lua
+
   {
     "yukimemi/dps-hitori",
     lazy = false,
@@ -23,12 +23,15 @@ If you use [folke/lazy.nvim](https://github.com/folke/lazy.nvim).
       "vim-denops/denops.vim",
     },
   }
+
 ```
 
 If you use [yukimemi/dvpm](https://github.com/yukimemi/dvpm).
 
-```
+```typescript
+
   dvpm.add({ url: "yukimemi/dps-hitori" });
+
 ```
 
 # Requirements 
@@ -70,11 +73,13 @@ default is 7070
 
 # Example 
 
-```
+```vim
+
   let g:hitori_debug = v:false
   let g:hitori_quit = v:false
   let g:hitori_port = 7070
   let g:hitori_blacklist_patterns = ["\\.tmp$", "\\.diff$", "(COMMIT_EDIT|TAG_EDIT|MERGE_|SQUASH_)MSG$"]
+
 ```
 
 # hitori cli command 
@@ -83,21 +88,26 @@ Before starting Neovim, you can use the `hitori` command to check if the WebSock
 
 To use `nvim`, use the following command:                     
 
-```
+```sh
+
   deno install --force --allow-net --allow-run --allow-read --name hitori https://raw.githubusercontent.com/yukimemi/dps-hitori/main/cmd/hitori_nvim.ts
 
 ```
 
 To use `nvim-qt`, use the following command:               
 
-```
+```sh
+
   deno install --force --allow-net --allow-run --allow-read --name hitori https://raw.githubusercontent.com/yukimemi/dps-hitori/main/cmd/hitori_nvim-qt.ts
+
 ```
 
 To use `neovide`, use the following command:               
 
-```
+```sh
+
   deno install --force --allow-net --allow-run --allow-read --name hitori https://raw.githubusercontent.com/yukimemi/dps-hitori/main/cmd/hitori_neovide.ts
+
 ```
 
 # License 
