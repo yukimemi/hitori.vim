@@ -1,9 +1,9 @@
-import { serve } from "https://deno.land/std@0.188.0/http/server.ts";
-import * as fn from "https://deno.land/x/denops_std@v5.0.0/function/mod.ts";
-import * as helper from "https://deno.land/x/denops_std@v5.0.0/helper/mod.ts";
-import * as vars from "https://deno.land/x/denops_std@v5.0.0/variable/mod.ts";
-import { ensureString } from "https://deno.land/x/unknownutil@v2.1.1/mod.ts";
-import type { Denops } from "https://deno.land/x/denops_std@v5.0.0/mod.ts";
+import { serve } from "https://deno.land/std@0.200.0/http/server.ts";
+import * as fn from "https://deno.land/x/denops_std@v5.0.1/function/mod.ts";
+import * as helper from "https://deno.land/x/denops_std@v5.0.1/helper/mod.ts";
+import * as vars from "https://deno.land/x/denops_std@v5.0.1/variable/mod.ts";
+import { ensureString } from "https://deno.land/x/unknownutil@v3.4.0/mod.ts";
+import type { Denops } from "https://deno.land/x/denops_std@v5.0.1/mod.ts";
 
 let enable = true;
 
