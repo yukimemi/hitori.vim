@@ -26,13 +26,13 @@ If you use L<folke/lazy.nvim|https://github.com/folke/lazy.nvim>.
 
 =begin lua
 
-  {
-    "yukimemi/dps-hitori",
-    lazy = false,
-    dependencies = {
-      "vim-denops/denops.vim",
-    },
-  }
+{
+  "yukimemi/dps-hitori",
+  lazy = false,
+  dependencies = {
+    "vim-denops/denops.vim",
+  },
+}
 
 =end lua
 
@@ -40,7 +40,7 @@ If you use L<yukimemi/dvpm|https://github.com/yukimemi/dvpm>.
 
 =begin typescript
 
-  dvpm.add({ url: "yukimemi/dps-hitori" });
+dvpm.add({ url: "yukimemi/dps-hitori" });
 
 =end typescript
 
@@ -87,10 +87,10 @@ default is 7070
 
 =begin vim
 
-  let g:hitori_debug = v:false
-  let g:hitori_quit = v:false
-  let g:hitori_port = 7070
-  let g:hitori_blacklist_patterns = ["\\.tmp$", "\\.diff$", "(COMMIT_EDIT|TAG_EDIT|MERGE_|SQUASH_)MSG$"]
+let g:hitori_debug = v:false
+let g:hitori_quit = v:false
+let g:hitori_port = 7070
+let g:hitori_blacklist_patterns = ["\\.tmp$", "\\.diff$", "(COMMIT_EDIT|TAG_EDIT|MERGE_|SQUASH_)MSG$"]
 
 =end vim
 
@@ -102,7 +102,7 @@ To use `nvim`, use the following command:                     X<hitori_cli_nvim>
 
 =begin sh
 
-  deno install --force --allow-net --allow-run --allow-read --name hitori https://raw.githubusercontent.com/yukimemi/dps-hitori/main/cmd/hitori_nvim.ts
+deno install --force --allow-net --allow-run --allow-read --name hitori https://raw.githubusercontent.com/yukimemi/dps-hitori/main/cmd/hitori_nvim.ts
 
 =end sh
 
@@ -110,7 +110,7 @@ To use `nvim-qt`, use the following command:               X<hitori_cli_nvim_qt>
 
 =begin sh
 
-  deno install --force --allow-net --allow-run --allow-read --name hitori https://raw.githubusercontent.com/yukimemi/dps-hitori/main/cmd/hitori_nvim-qt.ts
+deno install --force --allow-net --allow-run --allow-read --name hitori https://raw.githubusercontent.com/yukimemi/dps-hitori/main/cmd/hitori_nvim-qt.ts
 
 =end sh
 
@@ -118,7 +118,7 @@ To use `neovide`, use the following command:               X<hitori_cli_neovide>
 
 =begin sh
 
-  deno install --force --allow-net --allow-run --allow-read --name hitori https://raw.githubusercontent.com/yukimemi/dps-hitori/main/cmd/hitori_neovide.ts
+deno install --force --allow-net --allow-run --allow-read --name hitori https://raw.githubusercontent.com/yukimemi/dps-hitori/main/cmd/hitori_neovide.ts
 
 =end sh
 
