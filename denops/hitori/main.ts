@@ -1,8 +1,7 @@
-import { serve } from "https://deno.land/std@0.200.0/http/server.ts";
 import * as fn from "https://deno.land/x/denops_std@v5.0.1/function/mod.ts";
 import * as helper from "https://deno.land/x/denops_std@v5.0.1/helper/mod.ts";
 import * as vars from "https://deno.land/x/denops_std@v5.0.1/variable/mod.ts";
-import { ensureString } from "https://deno.land/x/unknownutil@v3.4.0/mod.ts";
+import { ensure, is } from "https://deno.land/x/unknownutil@v3.4.0/mod.ts";
 import type { Denops } from "https://deno.land/x/denops_std@v5.0.1/mod.ts";
 
 let enable = true;
@@ -49,7 +48,7 @@ export async function main(denops: Denops): Promise<void> {
           clog(`g:hitori_enable is false !`);
           return;
         }
-        const bufPath = ensureString(await fn.expand(denops, "%:p"));
+        const bufPath = ensure(await fn.expand(denops, "%:p"), is.String);
         clog({ bufPath });
 
         const ws = new WebSocket(`ws://localhost:${port}`);
@@ -119,7 +118,7 @@ export async function main(denops: Denops): Promise<void> {
     if (isListen) {
       await denops.dispatcher.attach();
     } else {
-      serve((req) => {
+      Deno.serve({ port }, (req) => {
         clog(req);
         const { response, socket } = Deno.upgradeWebSocket(req);
         socket.addEventListener("open", () => clog("[server] open !"));
@@ -175,7 +174,7 @@ export async function main(denops: Denops): Promise<void> {
           },
         );
         return response;
-      }, { port });
+      });
     }
   } catch (e) {
     console.log(e);

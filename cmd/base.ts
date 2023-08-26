@@ -1,11 +1,7 @@
 import { isAbsolute, join, normalize } from "https://deno.land/std@0.200.0/path/mod.ts";
 
 import { Command, EnumType } from "https://deno.land/x/cliffy@v1.0.0-rc.3/command/mod.ts";
-import {
-  ensureArray,
-  ensureNumber,
-  ensureString,
-} from "https://deno.land/x/unknownutil@v3.4.0/mod.ts";
+import { ensure, is, isArrayOf } from "https://deno.land/x/unknownutil@v3.4.0/mod.ts";
 
 const logLevelType = new EnumType(["debug", "info", "warn", "error"]);
 
@@ -22,8 +18,8 @@ function isListening(port: number): boolean {
 
 async function openVim(cmd: string, args: [(string | undefined)?]) {
   console.log({ cmd, args });
-  const command = new Deno.Command(ensureString(cmd), {
-    args: ensureArray<string>(args),
+  const command = new Deno.Command(ensure(cmd, is.String), {
+    args: ensure(args, isArrayOf(is.String)),
   });
   const child = command.spawn();
   const status = await child.status;
@@ -48,7 +44,7 @@ export function createCmd(cmd: string, denoArgs: string[]) {
     })
     .arguments("[input]")
     .action(async (options, ...args) => {
-      if (isListening(ensureNumber(options.port))) {
+      if (isListening(ensure(options.port, is.Number))) {
         const ws = new WebSocket(`ws://localhost:${options.port}`);
         // Resolve path.
         const a = args.map((x) => {
