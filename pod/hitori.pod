@@ -100,27 +100,27 @@ Before starting Neovim, you can use the `hitori` command to check if the WebSock
 
 To use `nvim`, use the following command:                     X<hitori_cli_nvim>
 
-=begin sh
+=begin shell
 
 deno install --force --allow-net --allow-run --allow-read --name hitori https://raw.githubusercontent.com/yukimemi/dps-hitori/main/cmd/hitori_nvim.ts
 
-=end sh
+=end shell
 
 To use `nvim-qt`, use the following command:               X<hitori_cli_nvim_qt>
 
-=begin sh
+=begin shell
 
 deno install --force --allow-net --allow-run --allow-read --name hitori https://raw.githubusercontent.com/yukimemi/dps-hitori/main/cmd/hitori_nvim-qt.ts
 
-=end sh
+=end shell
 
 To use `neovide`, use the following command:               X<hitori_cli_neovide>
 
-=begin sh
+=begin shell
 
 deno install --force --allow-net --allow-run --allow-read --name hitori https://raw.githubusercontent.com/yukimemi/dps-hitori/main/cmd/hitori_neovide.ts
 
-=end sh
+=end shell
 
 =head1 License X<hitori-license>
 
