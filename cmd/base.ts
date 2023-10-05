@@ -1,7 +1,7 @@
-import { isAbsolute, join, normalize } from "https://deno.land/std@0.202.0/path/mod.ts";
+import { isAbsolute, join, normalize } from "https://deno.land/std@0.203.0/path/mod.ts";
 
 import { Command, EnumType } from "https://deno.land/x/cliffy@v1.0.0-rc.3/command/mod.ts";
-import { ensure, is, isArrayOf } from "https://deno.land/x/unknownutil@v3.6.0/mod.ts";
+import { ensure, is, isArrayOf } from "https://deno.land/x/unknownutil@v3.9.0/mod.ts";
 
 const logLevelType = new EnumType(["debug", "info", "warn", "error"]);
 
