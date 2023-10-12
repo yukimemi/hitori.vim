@@ -71,6 +71,10 @@ C<g:hitori_debug>                                              X<g:hitori_debug>
 Enable debug messages.
 default is v:false
 
+C<g:hitori_opener>                                            X<g:hitori_opener>
+Configure how files are opened.
+default is "tab drop"
+
 C<g:hitori_quit>                                                X<g:hitori_quit>
 Whether to quit after sending a file to an already open server-side Vim/Neovim.
 default is v:true

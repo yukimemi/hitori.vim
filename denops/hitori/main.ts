@@ -1,6 +1,7 @@
 import * as fn from "https://deno.land/x/denops_std@v5.0.1/function/mod.ts";
 import * as helper from "https://deno.land/x/denops_std@v5.0.1/helper/mod.ts";
 import * as vars from "https://deno.land/x/denops_std@v5.0.1/variable/mod.ts";
+import * as buffer from "https://deno.land/x/denops_std@v5.0.1/buffer/mod.ts";
 import { ensure, is } from "https://deno.land/x/unknownutil@v3.9.0/mod.ts";
 import type { Denops } from "https://deno.land/x/denops_std@v5.0.1/mod.ts";
 
@@ -24,6 +25,7 @@ export async function main(denops: Denops): Promise<void> {
   const debug = await vars.g.get(denops, "hitori_debug", false);
   const quit = await vars.g.get(denops, "hitori_quit", true);
   const port = await vars.g.get(denops, "hitori_port", 7070);
+  const opener = await vars.g.get(denops, "hitori_opener", "tab drop");
   const ignorePatterns: string[] = await vars.g.get(
     denops,
     "hitori_ignore_patterns",
@@ -64,7 +66,7 @@ export async function main(denops: Denops): Promise<void> {
           if (!jsonData.open) {
             clog(`Open false, so skip !`);
             try {
-              await denops.cmd(`e ${bufPath}`);
+              await buffer.open(denops, bufPath, { opener });
             } catch (e) {
               clog(e);
             }
@@ -73,7 +75,7 @@ export async function main(denops: Denops): Promise<void> {
               await denops.cmd(`silent! qa!`);
             }
             try {
-              await denops.cmd(`e ${bufPath}`);
+              await buffer.open(denops, bufPath, { opener });
             } catch (e) {
               clog(e);
             }
@@ -161,7 +163,7 @@ export async function main(denops: Denops): Promise<void> {
                   open: true,
                 }),
               );
-              await denops.cmd(`e ${e.data}`);
+              await buffer.open(denops, e.data, { opener });
             } else {
               clog(`data is null !`);
               socket.send(

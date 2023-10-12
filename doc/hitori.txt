@@ -66,6 +66,10 @@ No settings are required. However, the following settings can be made if necessa
 Enable debug messages.
 default is v:false
 
+`g:hitori_opener`                                            *g:hitori_opener*
+Configure how files are opened.
+default is "tab drop"
+
 `g:hitori_quit`                                                *g:hitori_quit*
 Whether to quit after sending a file to an already open server-side Vim/Neovim.
 default is v:true
