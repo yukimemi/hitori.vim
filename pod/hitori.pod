@@ -94,7 +94,8 @@ default is 7070
 let g:hitori_debug = v:false
 let g:hitori_quit = v:false
 let g:hitori_port = 7070
-let g:hitori_blacklist_patterns = ["\\.tmp$", "\\.diff$", "(COMMIT_EDIT|TAG_EDIT|MERGE_|SQUASH_)MSG$"]
+let g:hitori_opener = "vsplit"
+let g:hitori_ignore_patterns = ["\\.tmp$", "\\.diff$", "(COMMIT_EDIT|TAG_EDIT|MERGE_|SQUASH_)MSG$"]
 
 =end vim
 
