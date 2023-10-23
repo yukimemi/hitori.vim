@@ -53,6 +53,11 @@ export async function main(denops: Denops): Promise<void> {
         const bufPath = ensure(await fn.expand(denops, "%:p"), is.String);
         clog({ bufPath });
 
+        if (ignorePatterns.some((p) => new RegExp(p).test(bufPath))) {
+          clog(`${bufPath} is ignore list pattern ! so open skip !`);
+          return;
+        }
+
         const ws = new WebSocket(`ws://localhost:${port}`);
         ws.onopen = async () => {
           clog(`[client] open socket !`);
@@ -134,12 +139,12 @@ export async function main(denops: Denops): Promise<void> {
           async (e) => {
             clog(`[server] message ! ${e.data}`);
 
-            // black list check.
+            // ignore list check.
             if (ignorePatterns.some((p) => new RegExp(p).test(e.data))) {
-              clog(`${e.data} is black list pattern ! so open skip !`);
+              clog(`${e.data} is ignore list pattern ! so open skip !`);
               socket.send(
                 JSON.stringify({
-                  msg: "This data is black list patterns !",
+                  msg: "This data is ignore list patterns !",
                   open: false,
                 }),
               );
