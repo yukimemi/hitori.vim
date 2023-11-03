@@ -71,6 +71,18 @@ default is ["\\.tmp$", "\\.diff$", "(COMMIT_EDIT|TAG_EDIT|MERGE_|SQUASH_)MSG$"]
 Websocket server port.
 default is 7070
 
+`g:hitori_wsl`                                                  
+Enable this setting if you want to automatically convert the path and open it even in wsl -> windows / windows -> wsl.
+default is v:false
+
+Websocket communication needs to pass between windows and wsl.
+In the case of the latest wsl2, this is possible by performing the following settings.
+
+```ini
+[wsl2]
+networkingMode=mirrored
+```
+
 # Example 
 
 ```vim
@@ -78,6 +90,7 @@ let g:hitori_debug = v:false
 let g:hitori_quit = v:false
 let g:hitori_port = 7070
 let g:hitori_opener = "vsplit"
+let g:hitori_wsl = v:true
 let g:hitori_ignore_patterns = ["\\.tmp$", "\\.diff$", "(COMMIT_EDIT|TAG_EDIT|MERGE_|SQUASH_)MSG$"]
 ```
 
