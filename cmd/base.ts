@@ -1,4 +1,4 @@
-import { isAbsolute, join, normalize } from "https://deno.land/std@0.223.0/path/mod.ts";
+import { isAbsolute, join, normalize } from "https://deno.land/std@0.224.0/path/mod.ts";
 
 import { Command, EnumType } from "https://deno.land/x/cliffy@v1.0.0-rc.4/command/mod.ts";
 import { ensure, is, isArrayOf } from "https://deno.land/x/unknownutil@v3.18.0/mod.ts";
