@@ -1,15 +1,15 @@
 // =============================================================================
 // File        : main.ts
 // Author      : yukimemi
-// Last Change : 2024/05/25 17:52:53.
+// Last Change : 2024/05/25 17:56:23.
 // =============================================================================
 
+import * as buffer from "https://deno.land/x/denops_std@v6.5.0/buffer/mod.ts";
 import * as fn from "https://deno.land/x/denops_std@v6.5.0/function/mod.ts";
 import * as helper from "https://deno.land/x/denops_std@v6.5.0/helper/mod.ts";
 import * as vars from "https://deno.land/x/denops_std@v6.5.0/variable/mod.ts";
-import * as buffer from "https://deno.land/x/denops_std@v6.5.0/buffer/mod.ts";
-import { ensure, is } from "https://deno.land/x/unknownutil@v3.18.1/mod.ts";
 import type { Denops } from "https://deno.land/x/denops_std@v6.5.0/mod.ts";
+import { z } from "https://deno.land/x/zod@v3.23.8/mod.ts";
 
 let enable = true;
 
@@ -81,7 +81,7 @@ export async function main(denops: Denops): Promise<void> {
           clog(`g:hitori_enable is false !`);
           return;
         }
-        const bufPath = ensure(await fn.expand(denops, "%:p"), is.String);
+        const bufPath = z.string().parse(await fn.expand(denops, "%:p"));
         clog({ bufPath });
 
         if (ignorePatterns.some((p) => new RegExp(p).test(bufPath))) {
