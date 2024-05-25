@@ -1,3 +1,9 @@
+// =============================================================================
+// File        : main.ts
+// Author      : yukimemi
+// Last Change : 2024/05/25 17:52:53.
+// =============================================================================
+
 import * as fn from "https://deno.land/x/denops_std@v6.5.0/function/mod.ts";
 import * as helper from "https://deno.land/x/denops_std@v6.5.0/helper/mod.ts";
 import * as vars from "https://deno.land/x/denops_std@v6.5.0/variable/mod.ts";

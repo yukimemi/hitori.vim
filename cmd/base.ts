@@ -1,3 +1,9 @@
+// =============================================================================
+// File        : base.ts
+// Author      : yukimemi
+// Last Change : 2024/05/25 17:51:00.
+// =============================================================================
+
 import { isAbsolute, join, normalize } from "https://deno.land/std@0.224.0/path/mod.ts";
 
 import { Command, EnumType } from "https://deno.land/x/cliffy@v1.0.0-rc.4/command/mod.ts";
