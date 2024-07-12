@@ -4,11 +4,11 @@
 // Last Change : 2024/05/25 17:56:23.
 // =============================================================================
 
-import * as buffer from "https://deno.land/x/denops_std@v6.5.0/buffer/mod.ts";
-import * as fn from "https://deno.land/x/denops_std@v6.5.0/function/mod.ts";
-import * as helper from "https://deno.land/x/denops_std@v6.5.0/helper/mod.ts";
-import * as vars from "https://deno.land/x/denops_std@v6.5.0/variable/mod.ts";
-import type { Denops } from "https://deno.land/x/denops_std@v6.5.0/mod.ts";
+import * as buffer from "https://deno.land/x/denops_std@v6.5.1/buffer/mod.ts";
+import * as fn from "https://deno.land/x/denops_std@v6.5.1/function/mod.ts";
+import * as helper from "https://deno.land/x/denops_std@v6.5.1/helper/mod.ts";
+import * as vars from "https://deno.land/x/denops_std@v6.5.1/variable/mod.ts";
+import type { Denops } from "https://deno.land/x/denops_std@v6.5.1/mod.ts";
 import { z } from "https://deno.land/x/zod@v3.23.8/mod.ts";
 
 let enable = true;
