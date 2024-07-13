@@ -4,7 +4,7 @@
 // Last Change : 2024/05/25 17:51:00.
 // =============================================================================
 
-import { isAbsolute, join, normalize } from "jsr:@std/path@0.225.2";
+import { isAbsolute, join, normalize } from "jsr:@std/path@1.0.0";
 
 import { Command, EnumType } from "https://deno.land/x/cliffy@v1.0.0-rc.4/command/mod.ts";
 import { ensure, is, isArrayOf } from "https://deno.land/x/unknownutil@v3.18.1/mod.ts";
