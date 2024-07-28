@@ -1,15 +1,15 @@
 // =============================================================================
 // File        : main.ts
 // Author      : yukimemi
-// Last Change : 2024/05/25 17:56:23.
+// Last Change : 2024/07/28 21:02:48.
 // =============================================================================
 
-import * as buffer from "https://deno.land/x/denops_std@v6.5.1/buffer/mod.ts";
-import * as fn from "https://deno.land/x/denops_std@v6.5.1/function/mod.ts";
-import * as helper from "https://deno.land/x/denops_std@v6.5.1/helper/mod.ts";
-import * as vars from "https://deno.land/x/denops_std@v6.5.1/variable/mod.ts";
-import type { Denops } from "https://deno.land/x/denops_std@v6.5.1/mod.ts";
-import { z } from "https://deno.land/x/zod@v3.23.8/mod.ts";
+import * as buffer from "jsr:@denops/std@7.0.0/buffer";
+import * as fn from "jsr:@denops/std@7.0.0/function";
+import * as helper from "jsr:@denops/std@7.0.0/helper";
+import * as vars from "jsr:@denops/std@7.0.0/variable";
+import type { Denops } from "jsr:@denops/std@7.0.0";
+import { z } from "npm:zod@3.23.8";
 
 let enable = true;
 

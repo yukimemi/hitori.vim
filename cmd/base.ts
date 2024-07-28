@@ -1,13 +1,13 @@
 // =============================================================================
 // File        : base.ts
 // Author      : yukimemi
-// Last Change : 2024/05/25 17:51:00.
+// Last Change : 2024/07/28 21:05:04.
 // =============================================================================
 
 import { isAbsolute, join, normalize } from "jsr:@std/path@1.0.2";
 
-import { Command, EnumType } from "https://deno.land/x/cliffy@v1.0.0-rc.4/command/mod.ts";
-import { ensure, is, isArrayOf } from "https://deno.land/x/unknownutil@v3.18.1/mod.ts";
+import { Command, EnumType } from "jsr:@cliffy/command@1.0.0-rc.5";
+import { ensure, is, isArrayOf } from "jsr:@core/unknownutil@3.18.1";
 
 const logLevelType = new EnumType(["debug", "info", "warn", "error"]);
 
