@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : main.ts
 // Author      : yukimemi
-// Last Change : 2024/07/28 21:02:48.
+// Last Change : 2024/08/03 13:25:38.
 // =============================================================================
 
 import * as buffer from "jsr:@denops/std@7.0.0/buffer";
@@ -245,5 +245,5 @@ export async function main(denops: Denops): Promise<void> {
     console.error(e);
   }
 
-  clog("dps-hitori has loaded");
+  clog("hitori.vim has loaded");
 }
