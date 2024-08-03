@@ -7,7 +7,7 @@
 import { isAbsolute, join, normalize } from "jsr:@std/path@1.0.2";
 
 import { Command, EnumType } from "jsr:@cliffy/command@1.0.0-rc.5";
-import { ensure, is, isArrayOf } from "jsr:@core/unknownutil@3.18.1";
+import { ensure, is, isArrayOf } from "jsr:@core/unknownutil@4.0.0";
 
 const logLevelType = new EnumType(["debug", "info", "warn", "error"]);
 
