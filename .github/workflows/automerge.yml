@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : automerge.yml
 # Author      : yukimemi
-# Last Change : 2024/08/03 20:05:17.
+# Last Change : 2024/08/03 20:08:25.
 # =============================================================================
 
 name: automerge
@@ -12,6 +12,7 @@ on:
   check_suite:
     types: [completed]
   status: {}
+
 jobs:
   automerge:
     runs-on: ubuntu-latest
