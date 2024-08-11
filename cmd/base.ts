@@ -1,13 +1,13 @@
 // =============================================================================
 // File        : base.ts
 // Author      : yukimemi
-// Last Change : 2024/07/28 21:05:04.
+// Last Change : 2024/08/12 01:56:41.
 // =============================================================================
 
 import { isAbsolute, join, normalize } from "jsr:@std/path@1.0.2";
 
 import { Command, EnumType } from "jsr:@cliffy/command@1.0.0-rc.5";
-import { ensure, is, isArrayOf } from "jsr:@core/unknownutil@4.0.0";
+import { z } from "npm:zod@3.23.8";
 
 const logLevelType = new EnumType(["debug", "info", "warn", "error"]);
 
@@ -24,8 +24,8 @@ function isListening(port: number): boolean {
 
 async function openVim(cmd: string, args: [(string | undefined)?]) {
   console.log({ cmd, args });
-  const command = new Deno.Command(ensure(cmd, is.String), {
-    args: ensure(args, isArrayOf(is.String)),
+  const command = new Deno.Command(z.string().parse(cmd), {
+    args: z.string().array().parse(args),
   });
   const child = command.spawn();
   const status = await child.status;
@@ -50,7 +50,7 @@ export function createCmd(cmd: string, denoArgs: string[]) {
     })
     .arguments("[input]")
     .action(async (options, ...args) => {
-      if (isListening(ensure(options.port, is.Number))) {
+      if (isListening(z.number().parse(options.port))) {
         const ws = new WebSocket(`ws://localhost:${options.port}`);
         // Resolve path.
         const a = args.map((x) => {
