@@ -4,7 +4,7 @@
 // Last Change : 2024/08/12 01:56:41.
 // =============================================================================
 
-import { isAbsolute, join, normalize } from "jsr:@std/path@1.0.2";
+import { isAbsolute, join, normalize } from "jsr:@std/path@1.0.6";
 
 import { Command, EnumType } from "jsr:@cliffy/command@1.0.0-rc.5";
 import { z } from "npm:zod@3.23.8";
