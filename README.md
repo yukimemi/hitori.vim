@@ -102,19 +102,19 @@ Before starting Neovim, you can use the `hitori` command to check if the WebSock
 To use `nvim`, use the following command:
 
 ```shell
-deno install --force --allow-net --allow-run --allow-read --name hitori https://raw.githubusercontent.com/yukimemi/hitori.vim/main/cmd/hitori_nvim.ts
+deno install --force --global --allow-net --allow-run --allow-read --name hitori https://raw.githubusercontent.com/yukimemi/hitori.vim/main/cmd/hitori_nvim.ts
 ```
 
 To use `nvim-qt`, use the following command:
 
 ```shell
-deno install --force --allow-net --allow-run --allow-read --name hitori https://raw.githubusercontent.com/yukimemi/hitori.vim/main/cmd/hitori_nvim-qt.ts
+deno install --force --global --allow-net --allow-run --allow-read --name hitori https://raw.githubusercontent.com/yukimemi/hitori.vim/main/cmd/hitori_nvim-qt.ts
 ```
 
 To use `neovide`, use the following command:
 
 ```shell
-deno install --force --allow-net --allow-run --allow-read --name hitori https://raw.githubusercontent.com/yukimemi/hitori.vim/main/cmd/hitori_neovide.ts
+deno install --force --global --allow-net --allow-run --allow-read --name hitori https://raw.githubusercontent.com/yukimemi/hitori.vim/main/cmd/hitori_neovide.ts
 ```
 
 # License
