@@ -4,11 +4,11 @@
 // Last Change : 2024/08/03 13:25:38.
 // =============================================================================
 
-import * as buffer from "jsr:@denops/std@7.3.0/buffer";
-import * as fn from "jsr:@denops/std@7.3.0/function";
-import * as helper from "jsr:@denops/std@7.3.0/helper";
-import * as vars from "jsr:@denops/std@7.3.0/variable";
-import type { Denops } from "jsr:@denops/std@7.3.0";
+import * as buffer from "jsr:@denops/std@7.3.1/buffer";
+import * as fn from "jsr:@denops/std@7.3.1/function";
+import * as helper from "jsr:@denops/std@7.3.1/helper";
+import * as vars from "jsr:@denops/std@7.3.1/variable";
+import type { Denops } from "jsr:@denops/std@7.3.1";
 import { z } from "npm:zod@3.23.8";
 
 let enable = true;
