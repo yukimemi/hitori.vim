@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : base.ts
 // Author      : yukimemi
-// Last Change : 2025/01/02 17:05:37.
+// Last Change : 2025/01/02 17:30:10.
 // =============================================================================
 
 import { isAbsolute, join, normalize } from "jsr:@std/path@1.0.8";
@@ -25,8 +25,8 @@ function isListening(port: number): boolean {
 
 async function win2wsl(path: string): Promise<string> {
   if (path[0] !== "/") {
-    const cmd = new Deno.Command("wslpath", {
-      args: [path],
+    const cmd = new Deno.Command("wsl", {
+      args: ["wslpath", path],
     });
     const { stdout } = await cmd.output();
     return new TextDecoder().decode(stdout).trim();
@@ -51,13 +51,10 @@ async function openVim(cmd: string[], args: [(string | undefined)?]) {
   const cmdHead = cmds[0];
   const cmdTail = cmds.slice(1);
   const escapeArgs = await Promise.all(z.string().array().parse(args).map(async (a) => {
-    if (a.startsWith("-")) {
+    if (a.startsWith("-") || cmdHead !== "wsl") {
       return a;
     }
-    if (cmdHead === "wsl") {
-      return await win2wsl(a);
-    }
-    return await wsl2win(a);
+    return await win2wsl(a);
   }));
   console.log({ cmdHead, cmdTail, escapeArgs });
   const command = new Deno.Command(cmdHead, {
