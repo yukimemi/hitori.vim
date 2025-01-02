@@ -1,14 +1,14 @@
 // =============================================================================
 // File        : main.ts
 // Author      : yukimemi
-// Last Change : 2024/08/03 13:25:38.
+// Last Change : 2025/01/02 16:49:06.
 // =============================================================================
 
 import * as buffer from "jsr:@denops/std@7.4.0/buffer";
 import * as fn from "jsr:@denops/std@7.4.0/function";
 import * as helper from "jsr:@denops/std@7.4.0/helper";
 import * as vars from "jsr:@denops/std@7.4.0/variable";
-import type { Denops } from "jsr:@denops/std@7.4.0";
+import type { Denops, Entrypoint } from "jsr:@denops/std@7.4.0";
 import { z } from "npm:zod@3.24.1";
 
 let enable = true;
@@ -46,7 +46,7 @@ async function wsl2win(denops: Denops, path: string): Promise<string> {
   return path;
 }
 
-export async function main(denops: Denops): Promise<void> {
+export const main: Entrypoint = async (denops: Denops) => {
   let isListen = false;
   const hasWin = await fn.has(denops, "win32");
   const hasWsl = await fn.has(denops, "wsl");
@@ -246,4 +246,4 @@ export async function main(denops: Denops): Promise<void> {
   }
 
   clog("hitori.vim has loaded");
-}
+};
