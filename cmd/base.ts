@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : base.ts
 // Author      : yukimemi
-// Last Change : 2025/01/02 17:30:10.
+// Last Change : 2025/01/02 17:56:44.
 // =============================================================================
 
 import { isAbsolute, join, normalize } from "jsr:@std/path@1.0.8";
@@ -26,7 +26,7 @@ function isListening(port: number): boolean {
 async function win2wsl(path: string): Promise<string> {
   if (path[0] !== "/") {
     const cmd = new Deno.Command("wsl", {
-      args: ["wslpath", path],
+      args: ["-e", "wslpath", path],
     });
     const { stdout } = await cmd.output();
     return new TextDecoder().decode(stdout).trim();
