@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : base.ts
 // Author      : yukimemi
-// Last Change : 2025/01/02 16:01:57.
+// Last Change : 2025/01/02 16:09:26.
 // =============================================================================
 
 import { isAbsolute, join, normalize } from "jsr:@std/path@1.0.8";
@@ -55,6 +55,7 @@ export function createCmd(cmd: string[], denoArgs: string[]) {
     .action(async (options, ...args) => {
       console.log({ cmd, denoArgs, options, args });
       if (isListening(z.number().parse(options.port))) {
+        console.log(`server is running !`);
         const ws = new WebSocket(`ws://localhost:${options.port}`);
         // Resolve path.
         const a = args.map((x) => {
@@ -81,6 +82,7 @@ export function createCmd(cmd: string[], denoArgs: string[]) {
           ws.close();
         };
       } else {
+        console.log(`server is not running !`);
         await openVim(cmd, args);
       }
     })
