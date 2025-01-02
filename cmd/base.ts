@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : base.ts
 // Author      : yukimemi
-// Last Change : 2025/01/02 15:36:39.
+// Last Change : 2025/01/02 16:01:57.
 // =============================================================================
 
 import { isAbsolute, join, normalize } from "jsr:@std/path@1.0.8";
@@ -53,6 +53,7 @@ export function createCmd(cmd: string[], denoArgs: string[]) {
     })
     .arguments("[input]")
     .action(async (options, ...args) => {
+      console.log({ cmd, denoArgs, options, args });
       if (isListening(z.number().parse(options.port))) {
         const ws = new WebSocket(`ws://localhost:${options.port}`);
         // Resolve path.
