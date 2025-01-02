@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : base.ts
 // Author      : yukimemi
-// Last Change : 2025/01/02 16:09:26.
+// Last Change : 2025/01/02 16:15:01.
 // =============================================================================
 
 import { isAbsolute, join, normalize } from "jsr:@std/path@1.0.8";
@@ -17,7 +17,8 @@ function isListening(port: number): boolean {
     const server = Deno.listen({ port });
     server.close();
     return false;
-  } catch {
+  } catch (e) {
+    console.warn(e);
     return true;
   }
 }
