@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : base.ts
 // Author      : yukimemi
-// Last Change : 2024/08/12 01:56:41.
+// Last Change : 2025/01/02 15:36:39.
 // =============================================================================
 
 import { isAbsolute, join, normalize } from "jsr:@std/path@1.0.8";
@@ -22,17 +22,20 @@ function isListening(port: number): boolean {
   }
 }
 
-async function openVim(cmd: string, args: [(string | undefined)?]) {
+async function openVim(cmd: string[], args: [(string | undefined)?]) {
   console.log({ cmd, args });
-  const command = new Deno.Command(z.string().parse(cmd), {
-    args: z.string().array().parse(args),
+  const cmds = z.string().array().parse(cmd);
+  const cmdHead = cmds[0];
+  const cmdTail = cmds.slice(1);
+  const command = new Deno.Command(cmdHead, {
+    args: cmdTail.concat(z.string().array().parse(args)),
   });
   const child = command.spawn();
   const status = await child.status;
   console.log({ status });
 }
 
-export function createCmd(cmd: string, denoArgs: string[]) {
+export function createCmd(cmd: string[], denoArgs: string[]) {
   return new Command()
     .name("hitori")
     .version("0.1.2")

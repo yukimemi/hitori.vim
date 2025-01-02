@@ -117,6 +117,12 @@ To use `neovide`, use the following command:
 deno install --force --global --allow-net --allow-run --allow-read --name hitori https://raw.githubusercontent.com/yukimemi/hitori.vim/main/cmd/hitori_neovide.ts
 ```
 
+To use `wsl neovim`, use the following command:
+
+```shell
+deno install --force --global --allow-net --allow-run --allow-read --name hitori https://raw.githubusercontent.com/yukimemi/hitori.vim/main/cmd/hitori_wslnvim.ts
+```
+
 # License
 
 Licensed under MIT License.
