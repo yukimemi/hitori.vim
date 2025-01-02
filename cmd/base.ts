@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : base.ts
 // Author      : yukimemi
-// Last Change : 2025/01/02 16:15:01.
+// Last Change : 2025/01/02 16:44:51.
 // =============================================================================
 
 import { isAbsolute, join, normalize } from "jsr:@std/path@1.0.8";
@@ -28,8 +28,10 @@ async function openVim(cmd: string[], args: [(string | undefined)?]) {
   const cmds = z.string().array().parse(cmd);
   const cmdHead = cmds[0];
   const cmdTail = cmds.slice(1);
+  const escapeArgs = args.map((a) => a?.replaceAll(/\\/g, "/"));
+  console.log({ cmdHead, cmdTail, escapeArgs });
   const command = new Deno.Command(cmdHead, {
-    args: cmdTail.concat(z.string().array().parse(args)),
+    args: cmdTail.concat(z.string().array().parse(escapeArgs)),
   });
   const child = command.spawn();
   const status = await child.status;
