@@ -7,7 +7,7 @@
 import { isAbsolute, join, normalize } from "jsr:@std/path@1.1.0";
 
 import { Command, EnumType } from "jsr:@cliffy/command@1.0.0-rc.7";
-import { z } from "npm:zod@3.25.58";
+import { z } from "npm:zod@3.25.62";
 
 const logLevelType = new EnumType(["debug", "info", "warn", "error"]);
 
