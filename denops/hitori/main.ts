@@ -1,15 +1,15 @@
 // =============================================================================
 // File        : main.ts
 // Author      : yukimemi
-// Last Change : 2025/01/02 16:49:06.
+// Last Change : 2025/09/22 00:06:45.
 // =============================================================================
 
-import * as buffer from "jsr:@denops/std@8.0.0/buffer";
-import * as fn from "jsr:@denops/std@8.0.0/function";
-import * as helper from "jsr:@denops/std@8.0.0/helper";
-import * as vars from "jsr:@denops/std@8.0.0/variable";
-import type { Denops, Entrypoint } from "jsr:@denops/std@8.0.0";
-import { z } from "npm:zod@4.1.11";
+import * as buffer from "@denops/std/buffer";
+import * as fn from "@denops/std/function";
+import * as helper from "@denops/std/helper";
+import * as vars from "@denops/std/variable";
+import type { Denops, Entrypoint } from "@denops/std";
+import { z } from "zod";
 
 let enable = true;
 

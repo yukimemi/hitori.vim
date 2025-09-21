@@ -1,13 +1,13 @@
 // =============================================================================
 // File        : base.ts
 // Author      : yukimemi
-// Last Change : 2025/01/02 18:01:13.
+// Last Change : 2025/09/22 00:09:42.
 // =============================================================================
 
-import { isAbsolute, join, normalize } from "jsr:@std/path@1.1.2";
+import { isAbsolute, join, normalize } from "@std/path";
 
-import { Command, EnumType } from "jsr:@cliffy/command@1.0.0-rc.8";
-import { z } from "npm:zod@4.1.11";
+import { Command, EnumType } from "@cliffy/command";
+import { z } from "zod";
 
 const logLevelType = new EnumType(["debug", "info", "warn", "error"]);
 
