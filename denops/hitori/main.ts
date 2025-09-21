@@ -9,7 +9,7 @@ import * as fn from "jsr:@denops/std@8.0.0/function";
 import * as helper from "jsr:@denops/std@8.0.0/helper";
 import * as vars from "jsr:@denops/std@8.0.0/variable";
 import type { Denops, Entrypoint } from "jsr:@denops/std@8.0.0";
-import { z } from "npm:zod@4.1.9";
+import { z } from "npm:zod@4.1.11";
 
 let enable = true;
 
