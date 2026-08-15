@@ -1,14 +1,14 @@
 preset = "github.com/yukimemi/pj-presets:denops"
-applied_at = "2026-08-15T06:43:56.3718464Z"
+applied_at = "2026-08-15T08:31:53.0130313Z"
 
 [[templates]]
 source = "github.com/yukimemi/pj-base"
-rev = "local"
-version = "0.13.0"
+rev = "1f7444229c1570750d61a0fa19c560ea0b680f44"
+version = "0.14.0"
 
 [[templates]]
 source = "github.com/yukimemi/pj-denops"
-rev = "local"
+rev = "4a5afaac473b65a47721949af52f3aad9af3be69"
 version = "0.1.0"
 
 [files.".agents/skills/renri/SKILL.md"]
@@ -24,19 +24,22 @@ content_hash = "486c974de88903113ed99b4e643432b7050e88f1031276f5263e8da7b43fe11e
 content_hash = "6d380d1ecc2f882c2011429d548a6f3c774b74f0c757d884453e4667172acc2a"
 
 [files.".github/workflows/apm-bump.yml"]
-content_hash = "bf75aa9cf020739a4c8c5b314a95582c857278e5803ec5bd2d0db60aba50a4d4"
+content_hash = "f1cf3615e0f5ff443860722da8d7f74530eaa37e755e65f4392a0c25cd83917e"
 
 [files.".github/workflows/automerge.yml"]
 once_applied = true
 
 [files.".github/workflows/ci.yml"]
-content_hash = "ae4586f9d4b9e744ac86a6481e6ffc6411be46976ddb7cab322c8964841a6f29"
+content_hash = "0afa41107971c819783433788912d6bdc53083713f441f2f79048e80ca9e5eb6"
 
 [files.".github/workflows/claude-review.yml"]
-content_hash = "849f515605bf7d641447e2a446301c7edaa4192c940aa1b17d6361fa9dddc6b2"
+content_hash = "4589425f4f2dd857f64116c2a8e0ae8746df423dd4cdf1de6c7e582b13fe245f"
 
 [files.".github/workflows/claude.yml"]
-content_hash = "d733c108593ab206646825dee02a8b838181e07eaac6eff0cc299a0f6b118cdf"
+content_hash = "e018b9c422cac8cb57d832c4100697a56bbd4b5f5a9a2abd6c803149665525a7"
+
+[files.".github/workflows/deno-update.yml"]
+content_hash = "4c27ab63f971635cb578f4ccc44387ec09821e126cb93f1b4b5e96925e109629"
 
 [files.".github/workflows/kata-apply.yml"]
 content_hash = "62bd9b21a8b7257762d06feefbd3d4595cadfdf01dbde2e67a03521fc4b09efc"
@@ -49,7 +52,7 @@ content_hash = "393b2b94540e792790ef9357e46e5bc259eb3064605794ca2373ae458999cb23
 once_applied = true
 
 [files."AGENTS.md"]
-content_hash = "ecb56e9c01fa79385e8563883e524652dac9eee7cfd7b4b3827900fa0aad4ddc"
+content_hash = "05d1e31ea1ddfecd30d40465a72d6adc7d0b3dbab09e78814838dd9acb6ccd7f"
 
 [files."CLAUDE.md"]
 content_hash = "a76b3af252969b8120128d7ce44f2b6cfdcf88c7420ee00675732f542d047529"
