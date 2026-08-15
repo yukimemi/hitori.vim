@@ -1,8 +1,6 @@
-# =============================================================================
-# File        : automerge.yml
-# Author      : yukimemi
-# Last Change : 2024/08/11 22:55:19.
-# =============================================================================
+# kata-managed — source: yukimemi/pj-denops/.github/workflows/automerge.yml
+# First seed is from kata; after that, Renovate bumps action versions
+# in this file directly.
 
 name: automerge
 
@@ -17,10 +15,9 @@ jobs:
   automerge:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
-      - uses: denoland/setup-deno@v1
+      - uses: actions/checkout@v4
+      - uses: denoland/setup-deno@v2
       - run: deno task ci
-      - uses: "pascalgn/automerge-action@v0.16.3"
+      - uses: pascalgn/automerge-action@v0.16.4
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-
